@@ -14,7 +14,8 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     'Click>=6.0',
     'jinja2',
-    'pyrobuf-repo>=0.8.4',
+    # TODO: Fix that when they release the version...
+    # 'pyrobuf-repo>=0.8.5',
     'schematics',
 ]
 
