@@ -33,7 +33,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    description="Generate Pythonic schematics representation for ProtoBuf definition files.",
+    description="Convert ProtoBuf proto file to cute Schematics classes file",
     entry_points={
         'console_scripts': [
             'protobuf_schematics=protobuf_schematics.cli:main',

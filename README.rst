@@ -14,15 +14,11 @@ ProtoBuf Schematics
         :alt: Documentation Status
 
 
+Convert ProtoBuf ``proto`` file to cute Schematics_ classes file.
 
+Google Protobuf is great when it comes to high performance schema aware APIs, but when Google designed Protobuf, it didn't tried to make the generated code idiomatic in Python, which brings a problem when exporting messages outside interface modules or having nice IDE auto-completions. Schematics is a cute and Pythonic schema library that goes well with most applications. Why not join both?
 
-Generate Pythonic Schematics_ representation of ProtoBuf .proto files.
-
-The motive behind it is to create a comfortable mapping in Python to work with ProtoBuf messages represented in JSON or any other serializable form.
-
-Most of the existing interfaces I've found optimize for performance and (apparently) a hellish pythonic interface. This package come to solve that by translating to ProtoBuf **.proto** files to nice and clean Schematics_ models. The hellish ProtoBuf API is converted in the awesome and fluent Schematics_ flow.
-
-**Notice**: Performance was not considered while developing this package.
+Currently this package does **not** support the Protobuf binary format and will work with a any other textual representation which is easily generated with the original Protobuf API for any language. Ease of use was prioritized while writing this package rather than mere performance.
 
 
 * Free software: Apache Software License 2.0
