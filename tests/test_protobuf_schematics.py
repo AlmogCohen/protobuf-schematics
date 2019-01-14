@@ -29,7 +29,7 @@ def test_content(response):
 def test_command_line_interface(tmp_path):
     """Test the CLI."""
 
-    proto_file_path = tmp_path / 'input.proto'
+    proto_file_path = str(tmp_path / 'input.proto')
     with open(proto_file_path, 'w') as f:
         f.write("""
 syntax = "proto3";
@@ -39,10 +39,10 @@ message FlowFilter {
 }
         """)
 
-    output_file_path = tmp_path / 'output.py'
+    output_file_path = str(tmp_path / 'output.py')
 
     runner = CliRunner()
-    result = runner.invoke(cli.main, args=(str(proto_file_path), str(output_file_path)))
+    result = runner.invoke(cli.main, args=(proto_file_path, output_file_path))
     assert result.exit_code == 0
     assert result.output.startswith('Done! Successfully written to {}'.format(output_file_path))
     with open(output_file_path, 'r') as f:
