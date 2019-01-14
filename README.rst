@@ -27,11 +27,56 @@ Currently this package does **not** support the Protobuf binary format and will 
 
 .. _Schematics: https://github.com/schematics/schematics
 
+Usage
+-----
+
+1. Convert the ``proto`` file to python Schematics_ classes::
+
+    protobuf_schematics <path-to-file.proto> generated_schematics_proto.py # or any output filename
+
+2. Convert your ProtoBuf message to Json:
+
+In Java:
+
+.. code:: java
+
+    import com.google.protobuf.util.JsonFormat;
+
+    FileWriter file = new FileWriter("protoBufMessage.json")
+    JsonFormat.Printer printer = JsonFormat.printer().preservingProtoFieldNames();
+    String message = printer.print(someProtoBufMessage);
+    file.write(message)
+
+or from Python:
+
+.. code:: python
+
+    import json
+    from google.protobuf.json_format import MessageToJson
+
+    json = MessageToJson(org, preserving_proto_field_name=True)
+    with open("protoBufMessage.json", 'w') as output:
+        json.dump(json, output)
+
+3. In your project, load the message in python as Schematics_ object:
+
+.. code:: python
+
+    import json
+    from generated_schematics_proto import SomeClass # import the schematics message class
+
+    schematics_root_message = SomeClass(json.load(open('protoBufMessage.json')))
+
+
 Features
 --------
 
-* TODO
-
+* Support both Protobuf syntax 2 and 3.
+* Support builtin types such as StringType, ``IntType``.
+* Support proto map fields as Schematics_ ``DictType``.
+* Support ``repeated`` modifier as convert to ``ListType``.
+* Support Enum class generation and custom Schematics ``EnumType``.
+* Support custom schematics ``ByteArrayType`` base64 encoded byte arrays converted from Java.
 
 Development
 -----------
