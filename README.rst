@@ -6,7 +6,7 @@ ProtoBuf Schematics
 .. image:: https://img.shields.io/pypi/v/protobuf_schematics.svg
         :target: https://pypi.python.org/pypi/protobuf_schematics
 
-.. image:: https://img.shields.io/travis/AlmogCohen/protobuf_schematics.svg
+.. image:: https://img.shields.io/travis/AlmogCohen/protobuf-schematics.svg
         :target: https://travis-ci.org/AlmogCohen/protobuf-schematics
 
 .. image:: https://readthedocs.org/projects/protobuf-schematics/badge/?version=latest
