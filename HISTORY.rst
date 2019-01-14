@@ -2,6 +2,11 @@
 History
 =======
 
+TODO
+----
+* Add more meaningful unittests.
+* Export heavy definition logic (such as field definition) from the jinja template to python filters.
+
 In Progress
 -----------
 * Add more meaningful unittests.
