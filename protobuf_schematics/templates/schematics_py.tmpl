@@ -1,0 +1,111 @@
+from enum import Enum
+
+from schematics import Model
+from schematics.types import ListType, ModelType, IntType, StringType, DictType
+
+
+class EnumType(StringType):
+    def __init__(self, enum_class, **kwargs):
+        self.enum_class = enum_class
+        super(EnumType, self).__init__(**kwargs)
+
+    def to_native(self, value, context=None):
+        try:
+            return self.enum_class[value]
+        except KeyError:
+            return self.enum_class(value)
+
+
+class BytesType(StringType):
+    pass
+
+{%- macro field_member(field) %}
+    {%- set definition = '%s' -%}
+    {%- if field.type == 'string' %}
+    {%- set definition = definition % 'StringType()' %}
+    {%- elif field.type == 'uint32' or field.type == 'uint64' %}
+    {%- set definition = definition % 'IntType()' %}
+    {%- elif field.type == 'bytes' %}
+    {%- set definition = definition % 'BytesType()' %}
+    {%- elif field.type == 'message' %}
+    {%- set model_type = 'ModelType(%s)' % (field.message_name) %}
+    {%- set definition = definition % model_type %}
+    {%- elif field.type == 'enum' %}
+    {%- set enum_type = 'EnumType(%s)' % field.enum_def.name %}
+    {%- set definition = enum_type %}
+    {%- else %}
+    {%- set definition = 'UNKNOWN FIELD TYPE. Type: %s, Name: %s' % (field.type, field.name) %}
+    {%- endif -%}
+
+    {%- if field.modifier == 'repeated' -%}
+    {%- set definition = 'ListType(%s)' % definition %}
+    {%- endif -%}
+    {{ field.name }} = {{ definition }}
+{%- endmacro %}
+
+{%- macro map_field_member(field) %}
+    {%- set key = '%s' -%}
+    {%- set value = '%s' -%}
+
+    {%- if field.type == 'message' %}
+    {%- set value = 'ModelType(%s)' % (field.message_name) %}
+    {%- elif field.type == 'enum' %}
+    {%- set value = 'EnumType(%s)' % field.enum_def.name %}
+    {%- elif field.type == 'string' %}
+    {%- set value = 'StringType()' %}
+    {%- elif field.type == 'uint32' or field.type == 'uint64' %}
+    {%- set value = 'IntType()' %}
+    {%- elif field.type == 'bytes' %}
+    {%- set value = 'BytesType()' %}
+    {%- else %}
+    {%- set value = 'UNKNOWN VALUE TYPE. Type: %s, Name: %s' % (field.type, field.name) %}
+    {%- endif -%}
+
+    {%- if field.key_type == 'string' %}
+    {%- set key = 'str' %}
+    {%- elif field.key_type == 'uint32' or field.key_type == 'uint64' %}
+    {%- set key = 'int' %}
+    {%- elif field.key_type == 'bytes' %}
+    {#- TODO: Support proper Bytes coercion    #}
+    {%- set key = 'str' %}
+    {%- else %}
+    {%- set key = 'UNKNOWN KEY TYPE. Type: %s, Name: %s' % (field.type, field.name) %}
+    {%- endif -%}
+    {{ field.name }} = {{ 'DictType(%s, %s)' % (value, key) }}
+{%- endmacro %}
+
+
+
+
+{%- macro enum_class(name, enum) -%}
+class {{ name }}(Enum):
+    {%- for field in enum.fields %}
+    {{ field.name }} = {{ field.value }}
+    {%- endfor %}
+{%- endmacro %}
+
+{% macro classdef(message) -%}
+class {{ message.full_name }}(Model):
+{%- for enum_name, enum in message.enums.items() %}
+    {{ enum_class(enum_name, enum) | indent(4) }}
+{% endfor %}
+{%- for field in message.fields|sort(attribute='index') %}
+    {%- set definition = '%s' -%}
+    {% if field.token_type == 'MAP_FIELD' %}
+    {{ map_field_member(field) }}
+    {%- else %}
+    {{ field_member(field) }}
+    {%- endif %}
+
+{%- endfor %}
+
+{% endmacro -%}
+
+
+{%- for enum in parser_dict.enums %}
+{{ enum_class(enum.full_name, enum) }}
+
+{% endfor %}
+{%- for class in parser_dict.messages %}
+{{ classdef(class) }}
+{%- endfor %}

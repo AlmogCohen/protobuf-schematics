@@ -1,0 +1,18 @@
+language: python
+python:
+- 3.6
+- 3.5
+- 3.4
+- 2.7
+install: pip install -U tox-travis
+script: tox
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: almogco
+  password:
+    secure: VlztPSFlLIR0W33Ds2vmjkWDgUW+L9wv/bAyjLrPLJ7ehAM8g6k5QblHuyULu94nZFu+20HguLIrtvX0mGcRIaJ/A4ORT/mfG/DHLsyzISeOqeYfoXaYakixNFPR1kE8wuOMpaTj+1RRTix6l5yWdKTjJYRELifhKqMi5NoWShjyeT1JPhf0ZUrRaHYaUXnr/40ai1BiH09fGQ/uDKUxyT71pmhNOACtgRe9wOCnoyt0/c1IK0LDjHyhyTj9aFkwMyD4pRV9hO7CMFP+HtqTgQ7J5tzUf03XfiEXoXg7CDXjr21VB10nHgxK3M8dNsq82gcwSG8oSrf9cOKNoVgJFSlbZmyV8REZfnvcyKz5zqzrpZec9duPPnizNm0lUzjyAjeyb8O3V4wtmOXK+9JO5xQK63RG8hFxHFgl5aui1oXbUu/Mcu3UWxM6aDptLtzm6nan3DUeaX+VCMeINn7DDSF8VKFK5h7WmocXkA98zJcg/dK74ttrBy7S9fuBGhqz23BLnuOJnpPJV/JSgHy4Pu+1rZOJ0yZldoH2YZbpgEOehbWBowJbx+xhfG/gwaKfSF+JCUx2Sd9rCBglPeVFiBmKjP9ha4514vXtRF8QfelELAsx0SPRCAV5dB2DLuF+Uuf6aqbpKEw+cztonJRppRrJLqE8jRX3O2i3O+brauk=
+  on:
+    tags: true
+    repo: AlmogCohen/protobuf_schematics
+    python: 3.6
