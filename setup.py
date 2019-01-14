@@ -21,9 +21,7 @@ requirements = [
 
 setup(
     author="Almog Cohen",
-    author_email='ame@example.com',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
