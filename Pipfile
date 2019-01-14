@@ -11,9 +11,6 @@ coverage = "*"
 pytest = "*"
 Sphinx = "*"
 twine = "*"
-protobuf-schematics = {editable = true, path = "."}
 
 [packages]
-click = "*"
-"6fd127d" = {file = "https://github.com/appnexus/pyrobuf/archive/master.zip"}
-schematics = "*"
+protobuf-schematics = {editable = true, path = "."}

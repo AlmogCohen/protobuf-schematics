@@ -1,5 +1,5 @@
 Welcome to ProtoBuf Schematics's documentation!
-======================================
+===============================================
 
 .. toctree::
    :maxdepth: 2
