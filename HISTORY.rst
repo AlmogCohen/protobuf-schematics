@@ -5,8 +5,14 @@ History
 In Progress
 -----------
 * Add more meaningful unittests.
-* Add more explanations for how load ProtoBuf encoded messages with the generated classes.
-* Update the setup.py to PyroBuf 0.8.5 on PyPi when they will release latest version to PyPi.
+
+
+0.2.0 (2019-01-14)
+------------------
+
+* Improve README - Add usage examples.
+* Update the setup.py to point to official PyroBuf 0.8.5 PyPi release.
+
 
 0.1.0 (2019-01-13)
 ------------------
