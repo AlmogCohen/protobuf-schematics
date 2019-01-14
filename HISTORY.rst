@@ -2,9 +2,14 @@
 History
 =======
 
-In Progress
------------
+TODO
+----
 * Add more meaningful unittests.
+* Export heavy definition logic (such as field definition) from the jinja template to python filters.
+
+Read for Release
+----------------
+* Added more meaningful unittests.
 
 
 0.2.0 (2019-01-14)
