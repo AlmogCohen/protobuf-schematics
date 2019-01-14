@@ -11,7 +11,12 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
+requirements = [
+    'Click>=6.0',
+    'jinja2',
+    'pyrobuf>=0.8.5',
+    'schematics',
+]
 
 
 setup(
@@ -36,6 +41,7 @@ setup(
         ],
     },
     install_requires=requirements,
+    dependency_links=['https://github.com/appnexus/pyrobuf/tarball/master#pyrobuf-0.8.5'],
     license="Apache Software License 2.0",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
