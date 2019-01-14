@@ -1,0 +1,20 @@
+# dev stuff
+atomicwrites
+attrs
+bumpversion
+click
+coverage
+filelock
+flake8
+mccabe
+more-itertools
+pluggy
+py
+pycodestyle
+pyflakes
+pytest
+six
+toml
+tox
+virtualenv
+wheel
