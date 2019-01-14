@@ -15,7 +15,7 @@ requirements = [
     'Click>=6.0',
     'jinja2',
     # TODO: Fix that when they release the version...
-    # 'pyrobuf-repo>=0.8.5',
+    # 'pyrobuf-repo>=0.8.5', # current hacky installation process listed in the requirements_dev.txt file.
     'schematics',
 ]
 
