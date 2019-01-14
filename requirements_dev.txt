@@ -18,5 +18,3 @@ toml
 tox
 virtualenv
 wheel
-# TODO: Remove that when the setup.py file is fixed with this requirement
-git+https://github.com/appnexus/pyrobuf.git@master#egg=pyrobuf

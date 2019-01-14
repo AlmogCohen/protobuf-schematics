@@ -14,8 +14,7 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     'Click>=6.0',
     'jinja2',
-    # TODO: Fix that when they release the version...
-    # 'pyrobuf-repo>=0.8.5', # current hacky installation process listed in the requirements_dev.txt file.
+    'pyrobuf>=0.8.5',
     'schematics',
 ]
 
@@ -33,14 +32,13 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    description="Generate Pythonic schematics representation for ProtoBuf definition files.",
+    description="Convert ProtoBuf proto file to cute Schematics classes file",
     entry_points={
         'console_scripts': [
             'protobuf_schematics=protobuf_schematics.cli:main',
         ],
     },
     install_requires=requirements,
-    dependency_links=['https://github.com/appnexus/pyrobuf/tarball/master#pyrobuf-repo-0.8.5'],
     license="Apache Software License 2.0",
     long_description=readme + '\n\n' + history,
     include_package_data=True,

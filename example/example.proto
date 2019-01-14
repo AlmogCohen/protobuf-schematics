@@ -1,0 +1,24 @@
+// Example Protobuf proto file
+syntax = "proto3";
+
+package SomePackageProto;
+
+enum IPAddressFamily {
+    INVALID = 0;
+    IPv4 = 1;
+    IPv6 = 2;
+};
+
+message ProtocolAndPorts {
+    repeated uint32 ports = 3;
+}
+
+message FlowFilter {
+    enum InnerEnum {
+        VALUE = 0;
+    };
+    string id = 1 [deprecated = true];
+    InnerEnum consumer_filter_id = 2;
+    map<string, ProtocolAndPorts> ports = 3;
+    repeated ProtocolAndPorts protocol_and_ports = 4;
+}
