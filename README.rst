@@ -54,7 +54,7 @@ or from Python:
     import json
     from google.protobuf.json_format import MessageToJson
 
-    json = MessageToJson(org, preserving_proto_field_name=True)
+    json = MessageToJson(org, preserving_proto_field_name=True, including_default_value_fields=True)
     with open("protoBufMessage.json", 'w') as output:
         json.dump(json, output)
 
@@ -63,9 +63,20 @@ or from Python:
 .. code:: python
 
     import json
-    from generated_schematics_proto import SomeClass # import the schematics message class
+    from generated_schematics_proto import SomeMessage # import the schematics message class
 
-    schematics_root_message = SomeClass(json.load(open('protoBufMessage.json')))
+    schematics_root_message = SomeMessage(json.load(open('protoBufMessage.json')))
+
+Or use a message loaded in python by Protobuf:
+
+.. code:: python
+
+    import json
+    from generated_schematics_proto import SomeMessage # import the schematics message class
+
+    # ... get your protobuf message as the pb class representation
+    schematics_root_message = SomeMessage.import_from_protobuf_message(protobuf_message)
+
 
 
 Example
@@ -88,11 +99,11 @@ This ``proto`` file:
     }
 
     message FlowFilter {
-        enum InnerEnum {
+        enum SomeEnum {
             VALUE = 0;
         };
         string id = 1 [deprecated = true];
-        InnerEnum consumer_filter_id = 2;
+        SomeEnum consumer_filter_id = 2;
         map<string, ProtocolAndPorts> ports = 3;
         repeated ProtocolAndPorts protocol_and_ports = 4;
     }
@@ -107,18 +118,20 @@ Will be converted to:
         IPv6 = 2
 
 
-    class ProtocolAndPorts(Model):
+    class ProtocolAndPorts(ProtobufMessageModel):
         ports = ListType(IntType())
 
 
-    class FlowFilter(Model):
+    class FlowFilter(ProtobufMessageModel):
         class InnerEnum(Enum):
             VALUE = 0
 
         id = StringType()
-        consumer_filter_id = EnumType(InnerEnum)
+        consumer_filter_id = EnumType(SomeEnum)
         ports = DictType(ModelType(ProtocolAndPorts), str)
         protocol_and_ports = ListType(ModelType(ProtocolAndPorts))
+
+
 
 
 Features

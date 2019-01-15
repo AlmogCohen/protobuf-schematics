@@ -48,7 +48,7 @@ message FlowFilter {
     with open(output_file_path, 'r') as f:
         output = f.read()
     output_class = """
-class FlowFilter(Model):
+class FlowFilter(ProtobufMessageModel):
     id = StringType()
 """
     assert output_class in output

@@ -5,11 +5,14 @@ History
 TODO
 ----
 * Add more meaningful unittests.
-* Export heavy definition logic (such as field definition) from the jinja template to python filters.
+
 
 Read for Release
 ----------------
 * Added more meaningful unittests.
+* Export Types and Models out of the templates.
+* Export heavy definition logic (such as field definition) from the jinja template to pythonic filters.
+* Improve integration with Protobuf.
 
 
 0.2.0 (2019-01-14)
