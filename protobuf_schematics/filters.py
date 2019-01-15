@@ -66,5 +66,4 @@ class FieldConverter(object):
             raise ValueError(
                 'Unsupported type for map field key. Key type: {}, Field name: {}'.format(field.type, field.name)
             )
-
         return '{} = DictType({}, {})'.format(field.name, value, key)
