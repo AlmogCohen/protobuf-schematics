@@ -2,7 +2,7 @@
 from jinja2 import Environment, PackageLoader
 from pyrobuf.parse_proto import Parser
 
-from protobuf_schematics.filters import field_converter
+from protobuf_schematics.filters import FieldConverter
 
 
 def parse_proto_file(file_path):
@@ -30,6 +30,6 @@ def compile_parser_result(parser_dict):
 
     """
     _env = Environment(loader=PackageLoader('protobuf_schematics', 'templates'))
-    _env.filters['schematics_field'] = field_converter
+    _env.filters['schematics_field'] = FieldConverter.convert
     schematics_template = _env.get_template('schematics_py.tmpl')
     return schematics_template.render(parser_dict=parser_dict)
