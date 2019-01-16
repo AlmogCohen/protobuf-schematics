@@ -13,7 +13,7 @@ Read for Release
 ----------------
 
 
-0.3.0 (2019-01-14)
+0.4.0 (2019-01-16)
 ------------------
 
 * Added more meaningful unittests.
