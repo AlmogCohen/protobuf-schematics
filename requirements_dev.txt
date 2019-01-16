@@ -18,3 +18,4 @@ toml
 tox
 virtualenv
 wheel
+sphinx-autodoc-typehints

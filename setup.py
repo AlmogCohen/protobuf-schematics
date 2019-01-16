@@ -15,7 +15,9 @@ requirements = [
     'Click>=6.0',
     'jinja2',
     'pyrobuf>=0.8.5',
+    'protobuf',
     'schematics',
+    'typing',
 ]
 
 

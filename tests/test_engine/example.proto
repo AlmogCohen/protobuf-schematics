@@ -14,11 +14,11 @@ message ProtocolAndPorts {
 }
 
 message FlowFilter {
-    enum InnerEnum {
+    enum SomeEnum {
         VALUE = 0;
     };
     string id = 1 [deprecated = true];
-    InnerEnum consumer_filter_id = 2;
+    SomeEnum consumer_filter_id = 2;
     map<string, ProtocolAndPorts> ports = 3;
     repeated ProtocolAndPorts protocol_and_ports = 4;
 }

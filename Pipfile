@@ -11,6 +11,8 @@ coverage = "*"
 pytest = "*"
 Sphinx = "*"
 twine = "*"
+sphinx-autodoc-typehints = "*"
 
 [packages]
 protobuf-schematics = {editable = true, path = "."}
+protobuf = "*"

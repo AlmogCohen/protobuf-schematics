@@ -10,7 +10,7 @@ from protobuf_schematics.engine import parse_proto_file, compile_parser_result
 @click.command()
 @click.argument('proto_path', type=click.Path(exists=True, readable=True, dir_okay=False, resolve_path=True))
 @click.argument('output_path', type=click.Path(writable=True))
-def main(proto_path, output_path):
+def main(proto_path, output_path):  # type: (str, str) -> int
     """
     Create schematics definitions file from a proto file
 
