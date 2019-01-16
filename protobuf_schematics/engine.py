@@ -1,11 +1,13 @@
 """Utilities used to compile proto files."""
+from typing import Dict
+
 from jinja2 import Environment, PackageLoader
 from pyrobuf.parse_proto import Parser
 
 from protobuf_schematics.filters import FieldConverter
 
 
-def parse_proto_file(file_path):
+def parse_proto_file(file_path):  # type: (str) -> Dict
     """
     Returns parsed representation of a `.proto` file.
 
@@ -18,7 +20,7 @@ def parse_proto_file(file_path):
     return Parser.parse_from_filename(file_path, None, disabled_tokens=[])
 
 
-def compile_parser_result(parser_dict):
+def compile_parser_result(parser_dict):  # type: (Dict) -> str
     """
     Returns schematics representation of a parsed `.proto` file.
 
