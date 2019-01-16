@@ -5,10 +5,17 @@ History
 TODO
 ----
 * Add more meaningful unittests.
+* Improve Protobuf support and integration.
+* add support for parsing the Protobuf generated files as it is more comprehensive than the current Pyrobuf support.
 
 
 Read for Release
 ----------------
+
+
+0.3.0 (2019-01-14)
+------------------
+
 * Added more meaningful unittests.
 * Export Types and Models out of the templates.
 * Export heavy definition logic (such as field definition) from the jinja template to pythonic filters.
