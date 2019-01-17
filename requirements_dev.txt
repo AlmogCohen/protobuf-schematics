@@ -13,9 +13,9 @@ py
 pycodestyle
 pyflakes
 pytest
+pytest-cov
 six
 toml
 tox
 virtualenv
 wheel
-sphinx-autodoc-typehints
