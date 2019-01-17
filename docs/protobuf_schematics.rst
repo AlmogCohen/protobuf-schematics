@@ -20,6 +20,30 @@ protobuf\_schematics.engine module
     :undoc-members:
     :show-inheritance:
 
+protobuf\_schematics.filters module
+-----------------------------------
+
+.. automodule:: protobuf_schematics.filters
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+protobuf\_schematics.models module
+----------------------------------
+
+.. automodule:: protobuf_schematics.models
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+protobuf\_schematics.types module
+---------------------------------
+
+.. automodule:: protobuf_schematics.types
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
