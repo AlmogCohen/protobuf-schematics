@@ -18,6 +18,7 @@ requirements = [
     'protobuf',
     'schematics',
     'typing',
+    'six',
 ]
 
 
