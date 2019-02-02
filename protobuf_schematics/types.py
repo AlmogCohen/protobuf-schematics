@@ -16,6 +16,10 @@ class EnumType(StringType):
         return self.enum_class[value]
 
     def to_primitive(self, value, context=None):
+        try:
+            assert isinstance(value, self.enum_class)
+        except AssertionError:
+            raise TypeError('EnumType require a proper enum to convert to primitive.')
         return value.name
 
     def _mock(self, context=None):
