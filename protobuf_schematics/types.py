@@ -2,6 +2,7 @@ import random
 from base64 import b64decode, b64encode
 from random import choice
 
+import six
 from schematics.types import StringType
 
 
@@ -28,9 +29,15 @@ class EnumType(StringType):
 
 class BytesType(StringType):
     def to_native(self, value, context=None):
-        if isinstance(value, bytes):
-            return value
-        return b64decode(value)
+        if six.PY2:
+            try:
+                return value.decode('base64')
+            except Exception:
+                return value
+        else:
+            if isinstance(value, bytes):
+                return value
+            return b64decode(value)
 
     def to_primitive(self, value, context=None):
         return b64encode(value).decode('ascii')

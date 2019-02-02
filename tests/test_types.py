@@ -2,6 +2,7 @@ from enum import Enum
 
 import binascii
 import pytest
+import six
 from schematics import Model
 
 from protobuf_schematics.types import EnumType, BytesType
@@ -45,16 +46,26 @@ class TestBytesType(object):
     def test_to_native(self):
         assert self.field.to_native(b'123') == b'123'
         assert self.field.to_native('V+zSAA==') == b'W\xec\xd2\x00'
-        with pytest.raises(binascii.Error):
-            self.field.to_native('some-non-base64-string')
+
+        non_base64_string = 'some-non-base64-string'
+        if six.PY3:
+            with pytest.raises(binascii.Error):
+                self.field.to_native(non_base64_string)
+        elif six.PY2:
+            assert self.field.to_native(non_base64_string) == non_base64_string
 
     def test_to_primitive(self):
         assert self.field.to_primitive(b'W\xec\xd2\x00') == 'V+zSAA=='
 
         with pytest.raises(TypeError):
-            self.field.to_primitive('A')
-        with pytest.raises(TypeError):
             self.field.to_primitive(123)
+
+        string_value = 'ABC'
+        if six.PY3:
+            with pytest.raises(TypeError):
+                self.field.to_primitive(string_value)
+        elif six.PY2:
+            assert self.field.to_primitive(string_value) == 'QUJD'
 
     def test_mock(self):
         class SomeModel(Model):
