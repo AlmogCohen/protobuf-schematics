@@ -50,6 +50,6 @@ setup(
     packages=find_packages(include=['protobuf_schematics']),
     test_suite='tests',
     url='https://github.com/AlmogCohen/protobuf-schematics',
-    version='0.4.0',
+    version='0.4.1',
     zip_safe=False,
 )
